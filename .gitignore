@@ -1,2 +1,9 @@
 .env
 
+.ipynb_checkpoints/
+bin/
+etc/
+lib/
+lib64
+share/
+coursier
