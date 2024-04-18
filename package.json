@@ -1,0 +1,27 @@
+{
+  "name": "notebooks",
+  "version": "1.0.0",
+  "description": "Hey I compiled scala lol.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "buildw": "esbuild input.js --bundle --outfile=bundled.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikedll/notebooks.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikedll/notebooks/issues"
+  },
+  "homepage": "https://github.com/mikedll/notebooks#readme",
+  "dependencies": {
+    "esbuild": "^0.20.2",
+    "http-server": "^14.1.1"
+  }
+}

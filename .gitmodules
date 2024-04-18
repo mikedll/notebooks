@@ -1,0 +1,3 @@
+[submodule "aristochart"]
+	path = aristochart
+	url = git@github.com:mikedll/aristochart.git

@@ -7,3 +7,12 @@ lib/
 lib64
 share/
 cs
+
+
+node_modules/
+
+project/
+
+target/
+
+
