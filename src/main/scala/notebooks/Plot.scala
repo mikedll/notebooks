@@ -3,7 +3,6 @@ import scala.math
 val expr1 = (n: Int) => 5 * (math.log10(n) / math.log10(2))
 val expr2 = (n: Int) => math.log10(50000 * n) / math.log10(2)
 
-
 @main
 def Main(): Seq[Array[Double]] = {
   println("|----------|----------|")
@@ -20,9 +19,12 @@ def Main(): Seq[Array[Double]] = {
   return output
 }
 
+def toJson(input: Seq[Array[Double]]) = {
+  os.write(os.pwd / "data.json", ujson.write(input))  
+}
 
-def output(output: Seq[Array[Double]]) = {
-  for(line <- output) {
+def output(input: Seq[Array[Double]]) = {
+  for(line <- input) {
     val v1 = line(0)
     val v2 = line(1)
 
@@ -30,4 +32,3 @@ def output(output: Seq[Array[Double]]) = {
   }  
 }
 
-// os.write(os.pwd / "raw-updated.json", ujson.write(json))
