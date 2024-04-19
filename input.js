@@ -1,6 +1,7 @@
 
 import { Aristochart } from './aristochart/Aristochart.js';
 
+
 class Logging {
 
   constructor() {
@@ -9,7 +10,7 @@ class Logging {
   }  
   
   info(s) {
-    this.output += s + "<br/>\n";
+    this.output += s + "\n";
     this.render();
   }
   
@@ -20,19 +21,16 @@ class Logging {
 
 document.addEventListener("DOMContentLoaded", () => {
   const logging = new Logging();
-  logging.info("point 1");
-  const el = document.getElementById('tester');
-  logging.info("point 2.1");
-
-  try {
-    logging.info("point 2.5");
-    const a = Aristochart;
-  } catch (e) {
-    logging.info(e);
-  }
-  logging.info(typeof(Aristochart));
-  logging.info("point 3.1");
-  new Aristochart(el, {
+  const el = document.getElementById('plot');
+  const a2 = new Aristochart(el, {
+    style: {
+      default: {
+        point: {
+          visible: false,
+          radius: 2
+        }
+      }
+    },
   	data: {
   		x: 10,
   		y: [0, 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -40,5 +38,5 @@ document.addEventListener("DOMContentLoaded", () => {
   		y2: [4, 4, 4, 3, 3, 2, 2, 1, 0, 0, 0, 0]
   	}
   });
-  logging.info("point 3");
+  // logging.info(JSON.stringify(a2.options, null, 2));
 });

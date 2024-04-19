@@ -512,7 +512,7 @@
       this.output = "";
     }
     info(s) {
-      this.output += s + "<br/>\n";
+      this.output += s + "\n";
       this.render();
     }
     render() {
@@ -521,18 +521,16 @@
   };
   document.addEventListener("DOMContentLoaded", () => {
     const logging = new Logging();
-    logging.info("point 1");
-    const el = document.getElementById("tester");
-    logging.info("point 2.1");
-    try {
-      logging.info("point 2.5");
-      const a = void 0;
-    } catch (e) {
-      logging.info(e);
-    }
-    logging.info(typeof void 0);
-    logging.info("point 3.1");
-    new (void 0)(el, {
+    const el = document.getElementById("plot");
+    const a2 = new Aristochart(el, {
+      style: {
+        default: {
+          point: {
+            visible: false,
+            radius: 2
+          }
+        }
+      },
       data: {
         x: 10,
         y: [0, 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -540,7 +538,6 @@
         y2: [4, 4, 4, 3, 3, 2, 2, 1, 0, 0, 0, 0]
       }
     });
-    logging.info("point 3");
   });
 })();
 /**
