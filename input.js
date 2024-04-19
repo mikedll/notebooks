@@ -22,20 +22,23 @@ class Logging {
 document.addEventListener("DOMContentLoaded", () => {
   const logging = new Logging();
   const el = document.getElementById('plot');
-  const a2 = new Aristochart(el, {
-    style: {
-      default: {
-        point: {
-          visible: false
+  logging.info("fetching");
+  fetch('/data.json')
+  .then(r => r.json())
+  .then((data) => {
+    const a2 = new Aristochart(el, {
+      style: {
+        default: {
+          point: {
+            visible: false
+          }
         }
-      }
-    },
-  	data: {
-  		x: 10,
-  		y: [0, 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 3, 4, 5, 6, 7, 8, 9, 10],
-  		y1: [10, 9, 8, 7, 7, 6, 2, 1, 1, 1],
-  		y2: [4, 4, 4, 3, 3, 2, 2, 1, 0, 0, 0, 0]
-  	}
+      },
+    	data: data
+    });
+  })
+  .catch(err => {
+    logging.info("Error: " + err);
   });
   // logging.info(JSON.stringify(a2.options, null, 2));
 });
