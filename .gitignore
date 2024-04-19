@@ -6,7 +6,6 @@ etc/
 lib/
 lib64
 share/
-cs
 
 bundled/
 node_modules/
