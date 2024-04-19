@@ -1,3 +1,4 @@
 
-Hey I compiled scala lol.
+# Run the code.
 
+    scala plot.scala
