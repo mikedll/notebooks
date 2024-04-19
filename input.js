@@ -26,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     style: {
       default: {
         point: {
-          visible: false,
-          radius: 2
+          visible: false
         }
       }
     },
