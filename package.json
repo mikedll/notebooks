@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "buildw": "esbuild input.js --bundle --outfile=bundled.js --watch",
+    "buildw": "esbuild input.js --bundle --outfile=bundled/plot.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
