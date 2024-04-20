@@ -8,7 +8,7 @@ class Logging {
   
   info(s) {
     this.output += s + "\n";
-    this.render();
+    this.render();      
   }
   
   render() {
@@ -18,7 +18,6 @@ class Logging {
     this.el.innerHTML = this.output;
   }
 }
-
 
 const logging = new Logging();
 

@@ -1,5 +1,5 @@
 
-import { Aristochart } from './aristochart/Aristochart.js';
+import { Aristochart } from './aristochart/aristochart.es6.js';
 import { logging } from './logging.js';
 
 document.addEventListener("DOMContentLoaded", () => {    
