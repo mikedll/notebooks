@@ -71,14 +71,14 @@ func Exercise3p3d5a() *TwoLines {
 	return result
 }
 
-func Exercise3p3d4c() *TwoLines {
-	expr1 := func(c5, c6 float64) float64 {
-		return c5 / c6
+func Exercise3p3d4c() *FourLines {
+	expr1 := func(c6, c7 float64) float64 {
+		return c6 / c7
 	}
 	expr2 := func(ratio float64) float64 {
 		return math.Pow(ratio, 0.25)
 	}
-	expr3 := func(n, ratio float64) float64 {
+	expr3 := func(ratio, n float64) float64 {
 		return ratio * n
 	}
 	expr4 := func(originalInput float64) float64 {
@@ -87,29 +87,65 @@ func Exercise3p3d4c() *TwoLines {
 	expr5 := func(n float64) float64 {
 		return 5 * math.Log2(n)
 	}
+	expr6 := func(c3, c4 float64) float64 {
+		return c3 / c4
+	}
+	expr7 := func(c3, c4 float64) float64 {
+		return c4 / c3
+	}
+	expr8 := func(ratio, n float64) float64 {
+		return ratio * n
+	}
+	expr9 := func(originalInput float64) float64 {
+		return math.Log2(originalInput)
+	}
+	expr10 := func(n float64) float64 {
+		return 0.5 * math.Log2(n)
+	}
+	expr11 := func(ratio float64) float64 {
+		return math.Pow(ratio, 2)
+	}
+	
+	c3 := float64(1.0)
+	c4 := float64(10.0)
+	c6 := float64(50_000)
+	c7 := float64(1)
+	fmt.Printf("Upper bound transition point: %.3f\n", expr2(expr1(c6, c7)))
+	fmt.Printf("Lower bound transition point: %.3f\n", expr11(expr7(1, 10)))
 
 	inputs := []float64{10, 12, 14, 16, 18, 20}
 	rows := [][]float64{}
 	for _, n := range inputs {
 		ratio := expr1(50_000, 1)
 		cutoff := expr2(ratio)
-		originalInput := expr3(n, ratio)
+		originalInput := expr3(ratio, n)
 		v1 := expr5(n)
 		v2 := expr4(originalInput)
 		row := []float64{ratio, cutoff, originalInput, v1, v2}
 		rows = append(rows, row)
 	}
 	ShowTable(rows)
+	
+	result := &FourLines{}
 
-	result := &TwoLines{}
-
-	for n := float64(1); n <= 40; n += 1 {
-		v1 := expr5(n)
-		v2 := expr4(n)
+	
+	lBoundRows := [][]float64{}
+	for n := float64(1); n <= 400; n += 1 {		
+		v1 := expr10(n)
+		v2 := expr9(expr8(expr6(c3, c4), n))
+		
+		row := []float64 { expr6(c3, c4), expr8(expr6(c3, c4), n), expr9(expr8(expr6(c3, c4), n)), expr10(n)}
+		lBoundRows = append(lBoundRows, row)
+		
+		v3 := expr5(n)
+		v4 := expr4(expr3(expr1(c6, c7), n))
 		result.X = append(result.X, n)
-		result.Y = append(result.Y, roundFloat(v1, 2))
-		result.Y2 = append(result.Y2, roundFloat(v2, 2))
+		result.Y = append(result.Y, roundFloat(v3, 2))
+		result.Y2 = append(result.Y2, roundFloat(v4, 2))
+		result.Y3 = append(result.Y3, roundFloat(v1, 2))
+		result.Y4 = append(result.Y4, roundFloat(v2, 2))
 	}
+	// ShowTable(lBoundRows)
 
 	return result
 }

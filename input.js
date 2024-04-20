@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if(text > 10000) {
   			var substr = /(\-?\d+(\.\d)?)/.exec(text) || [];
-        logging.info(type + "=" + text.toExponential(3));
+        // logging.info(type + "=" + text.toExponential(3));
   			this.ctx.fillText(text.toExponential(3), x, y);        
       } else {
   			var substr = /(\-?\d+(\.\d)?)/.exec(text) || [];
-        logging.info(type + "=" + substr[0]);
+        // logging.info(type + "=" + substr[0]);
   			this.ctx.fillText(substr[0], x, y);        
       }
     }
@@ -47,7 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         y3: {
           line: {
-            stroke: 'blue'
+            stroke: 'purple'
+          }
+        },
+        y4: {
+          line: {
+            stroke: 'red'
           }
         },
         default: {
