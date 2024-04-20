@@ -1,0 +1,2 @@
+webserver: ./node_modules/.bin/http-server --port 8080
+esbuild: npm run buildw

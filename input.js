@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .then((data) => {
     const plot = new Aristochart(plotContainer, {
       style: {
-        y1: {
+        y: {
           line: {
             stroke: 'blue'
           }
@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
         y2: {
           line: {
             stroke: 'green'
+          }
+        },
+        y3: {
+          line: {
+            stroke: 'dodgerblue'
           }
         },
         default: {
