@@ -32,8 +32,8 @@ func main() {
     v1 := expr1(n)
     v2 := expr2(n)
     result.X = append(result.X, n);
-    result.Y = append(result.Y, roundFloat(v2, 2));
-    result.Y2 = append(result.Y2, roundFloat(v1, 2));
+    result.Y = append(result.Y, roundFloat(v1, 2));
+    result.Y2 = append(result.Y2, roundFloat(v2, 2));
   }
   
   output, err := json.Marshal(*result)
