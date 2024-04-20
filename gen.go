@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	result := pkg.Exercise3p3d5a()
+	result := pkg.Exercise3p3d4c()
 
 	output, err := json.Marshal(*result)
 	if err != nil {
