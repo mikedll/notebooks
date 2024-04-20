@@ -40,8 +40,14 @@ func main() {
   if err != nil {
     log.Fatal(err)
   }
+
+  var outputPretty []byte
+  outputPretty, err = json.MarshalIndent(*result, "", "  ")
+  if err != nil {
+    log.Fatal(err)
+  }
   
   ioutil.WriteFile("data.json", output, 0644)
-  println(string(output))
   log.Println("Wrote data.json")
+  println(string(outputPretty))
 }
