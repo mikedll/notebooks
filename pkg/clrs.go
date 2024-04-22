@@ -7,18 +7,25 @@ import (
 
 func Exercise3p3d5b() *TwoLines {
 	expr1 := func(n float64) float64 {
-		return roundFloat(math.Pow(n, 3), 3)
+		return roundFloat(math.Pow(n, 2), 3)
 	}
 
 	expr2 := func(n float64) float64 {
 		factArg := math.Ceil(math.Log2(math.Log2(n)))
-		return roundFloat(factorialMin(factArg), 3)
+		return roundFloat(factorialMax(factArg), 3)
 	}
 
+	// start := float64(1)
+	start := math.Pow(float64(2), 88)
+	end := math.Pow(float64(2), 150)
+	step := (end - start) / 200
+
 	result := &TwoLines{}
-	for n := float64(1); n <= 30; n++ {
-		v1 := expr1(n)
-		v2 := expr2(n)
+	for n := start; n <= end; n += step {
+		v1 := expr2(n)
+		v2 := expr1(n)
+		// fmt.Println("Iterating ", start, n, end, v1, v2)
+
 		result.X = append(result.X, n)
 		result.Y = append(result.Y, v1)
 		result.Y2 = append(result.Y2, v2)
@@ -34,16 +41,22 @@ func Exercise3p3d5a() *TwoLines {
 	}
 
 	expr2 := func(n float64) float64 {
+		// return roundFloat(math.Pow(n, 5), 3)
 		return roundFloat(math.Pow(n, 5), 3)
 	}
 
 	result := &TwoLines{}
 
-	start := math.Pow(float64(2), 78)
+	start := math.Pow(float64(2), 0)
 	end := math.Pow(float64(2), 88)
-	step := (end - start) / 10
+	// start := math.Pow(float64(2), 0)
+	// end := math.Pow(float64(2), 14)
+	// end := math.Pow(float64(2), 8)
+
+	step := (end - start) / 200
 
 	for n := start; n <= end; n += step {
+		fmt.Println("Step: ", step)
 		v1 := expr1(n)
 		v2 := expr2(n)
 		result.X = append(result.X, n)
@@ -105,7 +118,7 @@ func Exercise3p3d4c() *FourLines {
 	expr11 := func(ratio float64) float64 {
 		return math.Pow(ratio, 2)
 	}
-	
+
 	c3 := float64(1.0)
 	c4 := float64(10.0)
 	c6 := float64(50_000)
@@ -125,18 +138,17 @@ func Exercise3p3d4c() *FourLines {
 		rows = append(rows, row)
 	}
 	ShowTable(rows)
-	
+
 	result := &FourLines{}
 
-	
 	lBoundRows := [][]float64{}
-	for n := float64(1); n <= 400; n += 1 {		
+	for n := float64(1); n <= 400; n += 1 {
 		v1 := expr10(n)
 		v2 := expr9(expr8(expr6(c3, c4), n))
-		
-		row := []float64 { expr6(c3, c4), expr8(expr6(c3, c4), n), expr9(expr8(expr6(c3, c4), n)), expr10(n)}
+
+		row := []float64{expr6(c3, c4), expr8(expr6(c3, c4), n), expr9(expr8(expr6(c3, c4), n)), expr10(n)}
 		lBoundRows = append(lBoundRows, row)
-		
+
 		v3 := expr5(n)
 		v4 := expr4(expr3(expr1(c6, c7), n))
 		result.X = append(result.X, n)

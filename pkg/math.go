@@ -19,7 +19,20 @@ func sciNotation(input float64) string {
 	return strconv.FormatFloat(input, 'e', -1, 64) + "e" + strconv.Itoa(count)
 }
 
+func factorial(input float64) (ret float64) {
+	ret = 1
+	for n := float64(1); n <= input; n++ {
+		ret = ret * n
+	}
+	return ret
+}
+
 func factorialMin(input float64) float64 {
 	return math.Pow(2*math.Pi*input, 0.5) * math.Pow(input/math.E, input) *
 		math.Pow(math.E, 1/((12*input)+1))
+}
+
+func factorialMax(input float64) float64 {
+	return math.Pow(2*math.Pi*input, 0.5) * math.Pow(input/math.E, input) *
+		math.Pow(math.E, 1/(12*input))
 }
