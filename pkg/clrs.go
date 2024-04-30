@@ -161,3 +161,82 @@ func Exercise3p3d4c() *FourLines {
 
 	return result
 }
+
+func Exercise3p3d6() {
+	logStar := func(n float64) (int, float64) {
+		i := 0
+		for n > 1 {
+			n = math.Log2(n)
+			i += 1
+		}
+		return i, n
+	}
+	val, n := logStar(math.Pow(2, 3))
+	
+	
+	fmt.Println("val, n", val, n)
+	
+	g_i := func(i int, n float64) float64 {
+		for j := 1; j <= i; j++ {
+			n = math.Pow(2, n)
+		}
+		return n
+	}
+	
+	val2 := g_i(val, n)
+	fmt.Println("val2", val2)	
+	return
+	
+	table := [][]float64{}
+	inputs := []float64 { 2, 4, 16, math.Pow(2, 16) }
+	for _, n := range inputs {
+		result := []float64 { n, math.Log2(n) }
+		table = append(table, result)
+	}
+	
+	result := []float64 { 1, math.Pow(2, 16) }
+	table = append(table, result)
+	
+	ShowTable(table)
+	
+}
+
+func Exercise3p3d9() *TwoLines {
+	result := &TwoLines{}
+	
+	expr1 := func(n float64) float64 {
+		return n * math.Log2(n)
+	}
+	expr2 := func(n float64) float64 {
+		return n;
+	}
+	
+	
+	for n := float64(1); n <= 50; n += 1 {
+		result.X = append(result.X, n)
+		result.Y = append(result.Y, expr1(n))
+		result.Y2 = append(result.Y2, expr2(n))
+	}
+	
+	return result
+}
+
+func Problem3d2() *TwoLines {
+	result := &TwoLines{}
+	
+	expr1 := func(n float64) float64 {
+		return math.Pow(n, 0.5);
+	}
+	
+	expr2 := func(n float64) float64 {
+		return math.Pow(n, math.Sin(n));
+	}
+	
+	for n := float64(1); n<=200; n += 1 {
+		result.X = append(result.X, n)
+		result.Y = append(result.Y, expr1(n))
+		result.Y2 = append(result.Y2, expr2(n))
+	}
+	
+	return result
+}

@@ -1,14 +1,14 @@
 package main
 
 import (
+	"pkg"
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"pkg"
 )
 
-func main() {
- 	result := pkg.Exercise3p3d5b()
+func graph() {
+ 	result := pkg.Problem3d2()
 
 	output, err := json.Marshal(*result)
 	if err != nil {
@@ -25,5 +25,9 @@ func main() {
 
 	ioutil.WriteFile("data.json", output, 0644)
 	log.Println("Wrote data.json")
-	// println(string(outputPretty))
+	// println(string(outputPretty))	
+}
+
+func main() {
+	graph()
 }
