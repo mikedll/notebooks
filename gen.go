@@ -8,7 +8,9 @@ import (
 )
 
 func graph() {
- 	result := pkg.Problem3d2()
+    result := &pkg.TwoLines{}
+    pkg.Problem3d3()
+ 	// result := pkg.Problem3d3()
 
 	output, err := json.Marshal(*result)
 	if err != nil {

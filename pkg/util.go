@@ -7,11 +7,20 @@ import (
 	"strings"
 )
 
-func ShowTable(rows [][]float64) {
-	colWidths := []int{}
+type Table struct {
+	Headers []string
+	Rows [][]float64
+}
+
+func ShowTable(table *Table) {
+	colWidths := []int{}	
+	for i, _ := range table.Headers {
+		colWidths = append(colWidths, len(table.Headers[i]))
+	}
+	
 	rowsRounded := [][]float64{}
-	for i, _ := range rows {
-		row := &rows[i]
+	for i, _ := range table.Rows {
+		row := &table.Rows[i]
 		outputRow := []float64{}
 		for j, _ := range *row {
 			rounded := roundFloat((*row)[j], 3)
@@ -21,10 +30,7 @@ func ShowTable(rows [][]float64) {
 			} else {
 				vStr = fmt.Sprintf("%.3f", rounded)
 			}
-			if len(colWidths) < j+1 {
-				// fmt.Println("Using " + strconv.Itoa(len(vStr)) + " as size of j=" + strconv.Itoa(j) + " because vStr=" + vStr)
-				colWidths = append(colWidths, len(vStr))
-			} else if colWidths[j] < len(vStr) {
+			if colWidths[j] < len(vStr) {
 				// fmt.Println("Using " + strconv.Itoa(len(vStr)) + " as size of j=" + strconv.Itoa(j))
 				colWidths[j] = len(vStr)
 			}
@@ -42,6 +48,12 @@ func ShowTable(rows [][]float64) {
 		filler := strings.Repeat("_", colWidths[j])
 		fillers = append(fillers, filler)
 	}
+	
+	headerLine := "|"
+	for i, _ := range table.Headers {
+		headerLine += strings.Repeat(" ", len(fillers[i]) - len(table.Headers[i])) + table.Headers[i] + "|"
+	}
+	fmt.Println(headerLine)
 
 	fmt.Println("|" + strings.Join(fillers, "|") + "|")
 	for i, _ := range rowsRounded {

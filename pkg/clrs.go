@@ -137,7 +137,10 @@ func Exercise3p3d4c() *FourLines {
 		row := []float64{ratio, cutoff, originalInput, v1, v2}
 		rows = append(rows, row)
 	}
-	ShowTable(rows)
+	table := &Table{}
+	table.Headers = []string{"ratio", "cutoff", "originalInput", "v1", "v2"}
+	table.Rows = rows
+	ShowTable(table)
 
 	result := &FourLines{}
 
@@ -187,15 +190,16 @@ func Exercise3p3d6() {
 	fmt.Println("val2", val2)	
 	return
 	
-	table := [][]float64{}
+	table := &Table{}
+	table.Headers = []string{ "n", "lg n" }
 	inputs := []float64 { 2, 4, 16, math.Pow(2, 16) }
 	for _, n := range inputs {
 		result := []float64 { n, math.Log2(n) }
-		table = append(table, result)
+		table.Rows = append(table.Rows, result)
 	}
 	
 	result := []float64 { 1, math.Pow(2, 16) }
-	table = append(table, result)
+	table.Rows = append(table.Rows, result)
 	
 	ShowTable(table)
 	
@@ -239,4 +243,30 @@ func Problem3d2() *TwoLines {
 	}
 	
 	return result
+}
+
+func Problem3d3() {
+	itr := func(n float64) int {
+		i := 0
+		for n > 1 {
+			n = math.Log2(n)
+			i += 1
+		}
+		return i
+	}
+	
+	inputs := []float64{ float64(4), float64(5), float64(8), 
+		float64(16), float64(17), math.Pow(2, 16), 
+	}
+	
+	table := &Table{}
+	table.Headers = []string{ "n", "lg^* n", "2^{lg^* n}"}
+	for _, input := range inputs {
+		itr := float64(itr(input))
+		twoPower := math.Pow(2, itr)
+		row := []float64{ input, itr, twoPower }
+		table.Rows = append(table.Rows, row)
+	}
+
+  ShowTable(table)
 }
