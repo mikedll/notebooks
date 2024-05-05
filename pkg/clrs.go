@@ -256,15 +256,16 @@ func Problem3d3() {
 	}
 	
 	inputs := []float64{ float64(4), float64(5), float64(8), 
-		float64(16), float64(17), math.Pow(2, 16), 
+		float64(16), float64(17), float64(2000), math.Pow(2, 16), 
+		math.Pow(2, 40),  math.Pow(2,80), 
 	}
 	
 	table := &Table{}
-	table.Headers = []string{ "n", "lg^* n", "2^{lg^* n}"}
+	table.Headers = []string{ "n", "lg^* n", "2^{lg^* n}", "lg n"}
 	for _, input := range inputs {
 		itr := float64(itr(input))
 		twoPower := math.Pow(2, itr)
-		row := []float64{ input, itr, twoPower }
+		row := []float64{ input, itr, twoPower, math.Log2(input) }
 		table.Rows = append(table.Rows, row)
 	}
 

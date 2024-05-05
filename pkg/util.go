@@ -64,7 +64,7 @@ func ShowTable(table *Table) {
 			if math.Round(v) == v {
 				fmt.Printf("%*.0f", colWidths[j], v)
 			} else {
-				fmt.Printf("%.3f", v)
+				fmt.Printf("%*.3f", colWidths[j], v)
 			}
 			fmt.Print("|")
 		}
