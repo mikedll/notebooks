@@ -255,7 +255,9 @@ func Problem3d3() {
 		return i
 	}
 	
-	inputs := []float64{ float64(4), float64(5), float64(8), 
+	inputs := []float64{ float64(0), float64(1), float64(2),
+		float64(3),
+		float64(4), float64(5), float64(8), 
 		float64(16), float64(17), float64(2000), math.Pow(2, 16), 
 		math.Pow(2, 40),  math.Pow(2,80), 
 	}
@@ -270,4 +272,20 @@ func Problem3d3() {
 	}
 
   ShowTable(table)
+	
+	table = &Table{}
+	table.Headers = []string{ "n", "g^(2) (n)", "lg^* g^(2) (n)"}
+	// table.Headers = []string{ "n", "g^(2) (n)", "lg^* g^(2) (n)", "g^(3) (n)", "lg^* g(3) (n)"}
+	inputs = []float64 { float64(1), float64(2), float64(3), float64(4), float64(5) }
+	for _, input := range inputs {
+		expr := math.Pow(2, math.Pow(2, input))
+		// expr2 := math.Pow(2, math.Pow(2, math.Pow(2, input)))
+		itrVal := float64(itr(expr))
+		// itrVal2 := float64(itr(expr2))
+		row := []float64{ input, expr, itrVal }
+		table.Rows = append(table.Rows, row)
+	}
+	
+
+	ShowTable(table)
 }
